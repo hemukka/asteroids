@@ -27,7 +27,8 @@ class Asteroid(CircleShape):
         self.kill()
 
         if self.radius <= ASTEROID_MIN_RADIUS:
-            return
+            #return not None to indicate asteroid was killed, for stats
+            return 1
         
         random_angle = random.uniform(20, 50)
         new_direction_1 = self.velocity.rotate(random_angle)

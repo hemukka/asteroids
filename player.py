@@ -9,6 +9,10 @@ class Player(CircleShape):
         self.rotation = 0
         self.shoot_cooldown = 0
 
+        #stats
+        self.shots = 0
+        self.hits = 0
+
     def draw(self, screen):
         pygame.draw.polygon(screen, "white", self.triangle(), 2)
 
@@ -49,4 +53,6 @@ class Player(CircleShape):
         self.shoot_cooldown = PLAYER_SHOOT_COOLDOWN
         shot = Shot(self.position[0], self.position[1])
         shot.velocity += pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
+
+        self.shots += 1
         

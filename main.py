@@ -46,11 +46,17 @@ def main():
         for asteroid in asteroids:
             if player.collides_with(asteroid):
                 print("Game over!")
+                print(f"{asteroid_field.spawned} asteroids spawned")
+                print(f"{player.shots} shots fired")
+                print(f"{player.hits} hits on asteroids")
+                print(f"{asteroid_field.killed} asteroids killed")
                 sys.exit()
             for shot in shots:
                 if asteroid.collides_with(shot):
                     shot.kill()
-                    asteroid.split()
+                    if asteroid.split():
+                        asteroid_field.killed += 1
+                    player.hits += 1
                     
 
         screen.fill("black")
@@ -64,6 +70,8 @@ def main():
         dt = clock.tick(60) / 1000
 
         print(len(shots), end='\r', flush=True)
+
+    
 
 
 if __name__ == "__main__":
